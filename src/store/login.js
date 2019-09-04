@@ -28,9 +28,7 @@ export default {
   getters: {
     user(state) {
       const [, body] = state.oauth.access_token.split(".");
-      const user = JSON.parse(atob(body));
-      if (user.scope) user.scope = user.scope.split(",");
-      return user;
+      return JSON.parse(atob(body));
     }
   }
 };
