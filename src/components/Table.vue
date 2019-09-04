@@ -7,7 +7,7 @@
     </thead>
     <tbody>
       <template v-if="$scopedSlots.default">
-        <slot v-for="row in rows" :item="row"> </slot>
+        <slot v-for="row in rows" :item="row"></slot>
       </template>
       <tr v-else v-for="(row, index) in rows" :key="index">
         <td v-for="(value, index) in row" :key="index">{{ value }}</td>
@@ -21,9 +21,6 @@ export default {
   props: {
     columns: Array,
     rows: Array
-  },
-  mounted() {
-    console.log(this.$scopedSlots);
   }
 };
 </script>

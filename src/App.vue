@@ -1,13 +1,10 @@
 <template>
-  <Animal />
+  <router-view></router-view>
 </template>
 
 <script>
-import Animal from "@/views/Animal/Index";
-
 export default {
-  name: "app",
-  components: { Animal }
+  name: "app"
 };
 </script>
 
