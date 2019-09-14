@@ -6,8 +6,8 @@ jobs:
     steps:
       - checkout
       - run:
-        name: install-dependencies
-        command: npm install
+          name: install-dependencies
+          command: npm install
       - run:
-        name: lint
-        command: npm run lint
+          name: lint
+          command: npm run lint
