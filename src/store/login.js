@@ -18,6 +18,12 @@ export default {
         { headers }
       );
       commit("save_token", data);
+    },
+    async signup(context, form) {
+      await axios.post(`${domain}/users`, form);
+    },
+    async confirm(context, token) {
+      await axios.post(`${domain}/users/confirm`, { token });
     }
   },
   mutations: {

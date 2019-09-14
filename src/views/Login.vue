@@ -2,6 +2,14 @@
   <div class="columns">
     <div class="column is-4 is-offset-4 has-text-centered">
       <h1 class="title">Login</h1>
+      <div class="notification is-danger" v-show="error">
+        <p v-if="!Array.isArray(error)">
+          {{ error }}
+        </p>
+        <p v-else v-for="({ message }, index) in error" :key="index">
+          {{ message }}
+        </p>
+      </div>
       <input v-model="form.username" class="input" placeholder="Email" />
       <input
         v-model="form.password"
@@ -9,10 +17,10 @@
         placeholder="Senha"
         type="password"
       />
-      <div class="notification is-danger" v-if="isError">
-        Usuário ou senha invalidos
-      </div>
       <button class="button" @click="submit(form)">Login</button>
+      <router-link class="button" :to="{ name: 'signup' }">
+        Cadastrar</router-link
+      >
     </div>
   </div>
 </template>
@@ -23,7 +31,7 @@ import { mapActions } from "vuex";
 export default {
   data() {
     return {
-      isError: false,
+      error: "",
       form: {
         username: "",
         password: ""
@@ -36,8 +44,8 @@ export default {
       try {
         await this.login(form);
         this.$router.push({ name: "users" });
-      } catch {
-        this.isError = true;
+      } catch ({ response }) {
+        this.error = response.data.message || response.data.errors;
       }
     }
   }
